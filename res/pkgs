@@ -38,6 +38,7 @@ abook
 htop
 gh
 fzf
+libfuse2t64 # dependencia para appimages
 chafa # visualizar imágenes en lf.
 poppler-utils # visualizar pdfs en lf.
 trash-cli
