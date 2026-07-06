@@ -53,6 +53,10 @@ bash ./res/std/ly.sh
 # Instalar Newsraft (rss)
 bash ./res/std/newsraft.sh
 
+# Configuración de GTK3
+spawn-sh-at-startup "gsettings set org.gnome.desktop.interface gtk-theme Arc-Dark"
+spawn-sh-at-startup "gsettings set org.gnome.desktop.interface icon-theme Papirus-Dark"
+
 # Descargar yt-dlp de github
 wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp
 chmod +x yt-dlp
