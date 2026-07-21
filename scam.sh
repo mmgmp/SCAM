@@ -12,23 +12,11 @@ source ./res/pkgs.conf
 sudo nala install "${ENVIROMENT[@]}" "${SOUND[@]}" "${MULTIMEDIA[@]}" "${THEME[@]}" "${EXTRA[@]}"
 
 # Navegador web
-echo -e "\nElige el navegador web (separar varios con espacios):"
-echo -e " 1) Brave\n 2) Firefox-esr\n"
-read -p "Selección/es (Enter para saltar): " browser_choices
-
-for choice in $browser_choices; do
-	case $choice in
-		1) curl -fsS https://dl.brave.com/install.sh | sh ;;
-        2) sudo apt install -y firefox-esr ;;
-    esac
-done
+curl -fsS https://dl.brave.com/install.sh | sh
 
 # Flatpak
 sudo apt install -y flatpak
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-
-# Aplicaciones GTk4 oscuras
-dconf write /org/gnome/desktop/interface/color-scheme '"prefer-dark"'
 
 # Crear carpetas para fuentes
 [ -d ~/.local/share/fonts ] || mkdir -p ~/.local/share/fonts
@@ -50,6 +38,9 @@ bash ./res/std/newsraft.sh
 # Configuración de GTK3
 spawn-sh-at-startup "gsettings set org.gnome.desktop.interface gtk-theme Arc-Dark"
 spawn-sh-at-startup "gsettings set org.gnome.desktop.interface icon-theme Papirus-Dark"
+
+# Aplicaciones GTk4 oscuras
+dconf write /org/gnome/desktop/interface/color-scheme '"prefer-dark"'
 
 # Descargar yt-dlp de github
 wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp
