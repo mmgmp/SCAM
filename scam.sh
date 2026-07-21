@@ -1,21 +1,11 @@
 #!/bin/bash
 
-# ---- Instalar nala (más estético) ----
+# Instalar nala (más estético)
 sudo apt update
 sudo apt install -y nala
 
-#===== INSTALACIÓN =====#
-
-echo -e "\nElige el entorno de escritorio (separar varios con espacios):"
-echo -e " 1) Sway\n 2) Niri\n"
-read -p "Selección/es (Enter para saltar): " desktop_choices
-
-for choice in $desktop_choices; do
-	case $choice in
-		1) bash ./res/wm/sway.sh || exit 1 ;;
-        2) bash ./res/wm/niri.sh && bash ./res/std/xwayland-satellite.sh || exit 1 ;;
-    esac
-done
+# Descargar e instalar Niri
+bash ./res/wm/niri.sh && bash ./res/std/xwayland-satellite.sh || exit 1
 
 # Paquetes de los repositorios oficiales
 source ./res/pkgs.conf
