@@ -5,7 +5,7 @@ sudo apt update
 sudo apt install -y nala
 
 # Descargar e instalar Niri
-bash ./res/wm/niri.sh && bash ./res/std/xwayland-satellite.sh || exit 1
+bash ./res/niri.sh && bash ./res/xwayland-satellite.sh || exit 1
 
 # Paquetes de los repositorios oficiales
 source ./res/pkgs.conf

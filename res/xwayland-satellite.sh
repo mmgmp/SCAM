@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Comprobar si las herramientas están instaladas
-[ -f /usr/bin/7z ] || sudo apt install -y p7zip-full
-[ -f /usr/bin/cargo ] || sudo apt install -y cargo
+[ -f /usr/bin/7z ] || sudo nala install -y p7zip-full
+[ -f /usr/bin/cargo ] || sudo nala install -y cargo
 
 # Instalar dependencias
-sudo apt install -y xwayland clang libxcb-cursor-dev libxcb1-dev
+sudo nala install -y xwayland clang libxcb-cursor-dev libxcb1-dev
 
 # Descargar xwayland-satellite
 wget https://github.com/Supreeeme/xwayland-satellite/archive/refs/tags/v0.8.zip
