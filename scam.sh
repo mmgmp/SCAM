@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# ---- Instalar nala (más estético) ----
+sudo apt update
+sudo apt install -y nala
+
 #===== INSTALACIÓN =====#
 
 echo -e "\nElige el entorno de escritorio (separar varios con espacios):"
@@ -14,8 +18,8 @@ for choice in $desktop_choices; do
 done
 
 # Paquetes de los repositorios oficiales
-pkgs_list="res/pkgs"
-sudo apt install -y $(grep -vE '^\s*#' "$pkgs_list" | grep -vE '^\s*$' | sed 's/#.*//' | awk '{$1=$1};1' | tr '\n' ' ') || exit 1
+source ./res/pkgs.conf
+sudo nala install "${ENVIROMENT[@]}" "${SOUND[@]}" "${MULTIMEDIA[@]}" "${THEME[@]}" "${EXTRA[@]}"
 
 # Navegador web
 echo -e "\nElige el navegador web (separar varios con espacios):"
