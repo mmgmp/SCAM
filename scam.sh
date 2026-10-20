@@ -11,6 +11,9 @@ bash ./res/niri.sh && bash ./res/xwayland-satellite.sh || exit 1
 source ./res/pkgs.conf
 sudo nala install "${ENVIROMENT[@]}" "${SOUND[@]}" "${MULTIMEDIA[@]}" "${THEME[@]}" "${EXTRA[@]}"
 
+# Instalar quickshell
+bash ./res/std/quickshell.sh
+
 # Navegador web
 curl -fsS https://dl.brave.com/install.sh | sh
 
