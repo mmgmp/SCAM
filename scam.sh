@@ -75,14 +75,21 @@ gsettings set org.gnome.desktop.interface icon-theme Papirus-Dark
 # Aplicaciones GTk4 oscuras
 dconf write /org/gnome/desktop/interface/color-scheme '"prefer-dark"'
 
-# Ocultar el manú GRUB
-sudo sed -i 's/GRUB_TIMEOUT=5/GRUB_TIMEOUT=0/' /etc/default/grub
+# Configurar GRUB en un drop-in
+sudo mkdir -p /etc/default/grub.d
+sudo tee /etc/default/grub.d/99-custom.cfg >/dev/null <<'EOF'
+# Menú oculto, pero accesible con Shift/Esc durante 2 s
+GRUB_TIMEOUT_STYLE=hidden
+GRUB_TIMEOUT=2
 
-# Mostrar rueda giratoria
-sudo sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="quiet"/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"/' /etc/default/grub
+# Arranque silencioso con Plymouth
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
+EOF
+
+# Tema de Plymouth (-R regenera el initramfs)
 sudo plymouth-set-default-theme -R spinner
 
-# Actualizar GRUB
+# Regenerar grub.cfg
 sudo update-grub
 
 # Desactivar archivo .sudo_as_admin_successful
