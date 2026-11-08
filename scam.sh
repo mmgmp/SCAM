@@ -47,7 +47,7 @@ sudo mv -f yt-dlp /usr/bin/yt-dlp
 # Instalar Starship prompt
 curl -sS https://starship.rs/install.sh | sh
 sudo mv /usr/local/bin/starship /usr/bin/
-starship preset plain-text-symbols -o ~/.config/starship.toml
+mkdir -p ~/.config && starship preset plain-text-symbols -o ~/.config/starship.toml
 
 # Función para paquetes opcionales
 ask() {
@@ -108,7 +108,7 @@ git clone https://github.com/mmgmp/dotfiles
 cp -r dotfiles/{.bashrc,.profile,.config,.local} ~/
 
 # Instalar mis scripts
-git clone https://github.com/mmgmp/scrips
+git clone https://github.com/mmgmp/scripts
 cp -r scripts/{menus/*,notifications/*,user-tools/*} ~/
 
 # Historial de bash en XDG
