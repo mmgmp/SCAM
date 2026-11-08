@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # Actualizar sistema
-sudo apt update && sudo apt upgrade
+sudo apt update && sudo apt upgrade -y
 
 #===== INSTALACIÓN =====#
 
 # Paquetes de los repositorios oficiales
 source ./res/pkgs.conf
-sudo apt install "${ENVIROMENT[@]}" "${SOUND[@]}" "${MULTIMEDIA[@]}" "${THEME[@]}" "${EXTRA[@]}" || exit 1
+sudo apt install -y "${ENVIROMENT[@]}" "${SOUND[@]}" "${MULTIMEDIA[@]}" "${THEME[@]}" "${EXTRA[@]}" || exit 1
 
 # Descargar e instalar Niri
 bash ./res/niri.sh && bash ./res/xwayland-satellite.sh || exit 1
@@ -43,6 +43,11 @@ bash ./res/newsraft.sh
 wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp
 chmod +x yt-dlp
 sudo mv -f yt-dlp /usr/bin/yt-dlp
+
+# Instalar Starship prompt
+curl -sS https://starship.rs/install.sh | sh
+sudo mv /usr/local/bin/starship /usr/bin/
+starship preset plain-text-symbols -o ~/.config/starship.toml
 
 # Preguntar si quieres instalar auto-cpufreq
 while true; do
@@ -87,10 +92,10 @@ sudo update-grub
 
 # Desactivar archivo .sudo_as_admin_successful
 echo 'Defaults !admin_flag' | sudo tee /etc/sudoers.d/no_admin_flag
-rm ~/.sudo_as_admin_successful
+rm -f ~/.sudo_as_admin_successful
 
 # Montar USB en /media con udisks2
-[ -d /etc/udev/rules.d/ ] || mkdir -p /etc/udev/rules.d/
+[ -d /etc/udev/rules.d/ ] || sudo mkdir -p /etc/udev/rules.d/
 echo 'ENV{ID_FS_USAGE}=="filesystem|other|crypto", ENV{UDISKS_FILESYSTEM_SHARED}="1"' | sudo tee /etc/udev/rules.d/99-udisks2.rules
 
 # Crear carpetas del usuario
@@ -103,11 +108,6 @@ cp -r dotfiles/{.bashrc,.profile,.config,.local} ~/
 # Instalar mis scripts
 git clone https://github.com/mmgmp/scrips
 cp -r scripts/{menus/*,notifications/*,user-tools/*} ~/
-
-# Instalar Starship prompt
-curl -sS https://starship.rs/install.sh | sh
-sudo mv /usr/local/bin/starship /usr/bin/
-source ~/.bashrc && starship preset plain-text-symbols -o ~/.config/starship.toml
 
 # Historial de bash en XDG
 mkdir -p ~/.local/state/bash && mv ~/.bash_history ~/.local/state/bash/history
