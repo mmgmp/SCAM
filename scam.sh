@@ -3,6 +3,8 @@
 # Actualizar sistema
 sudo apt update && sudo apt upgrade
 
+#===== INSTALACIÓN =====#
+
 # Paquetes de los repositorios oficiales
 source ./res/pkgs.conf
 sudo apt install "${ENVIROMENT[@]}" "${SOUND[@]}" "${MULTIMEDIA[@]}" "${THEME[@]}" "${EXTRA[@]}" || exit 1
@@ -37,13 +39,6 @@ bash ./res/std/ly.sh
 # Instalar Newsraft (rss)
 bash ./res/std/newsraft.sh
 
-# Configuración de GTK3
-gsettings set org.gnome.desktop.interface gtk-theme Arc-Dark
-gsettings set org.gnome.desktop.interface icon-theme Papirus-Dark
-
-# Aplicaciones GTk4 oscuras
-dconf write /org/gnome/desktop/interface/color-scheme '"prefer-dark"'
-
 # Descargar yt-dlp de github
 wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp
 chmod +x yt-dlp
@@ -72,6 +67,13 @@ while true; do
 done
 
 #===== CONFIGURACIÓN =====#
+
+# Configuración de GTK3
+gsettings set org.gnome.desktop.interface gtk-theme Arc-Dark
+gsettings set org.gnome.desktop.interface icon-theme Papirus-Dark
+
+# Aplicaciones GTk4 oscuras
+dconf write /org/gnome/desktop/interface/color-scheme '"prefer-dark"'
 
 # Ocultar el manú GRUB
 sudo sed -i 's/GRUB_TIMEOUT=5/GRUB_TIMEOUT=0/' /etc/default/grub
