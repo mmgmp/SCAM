@@ -69,6 +69,7 @@ ask Typst ./res/typst.sh
 #===== CONFIGURACIÓN =====#
 
 # Configuración de GTK3
+gsettings set org.gnome.desktop.interface font-name 'Inter 11'
 gsettings set org.gnome.desktop.interface gtk-theme Arc-Dark
 gsettings set org.gnome.desktop.interface icon-theme Papirus-Dark
 
