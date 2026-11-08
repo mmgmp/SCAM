@@ -49,27 +49,22 @@ curl -sS https://starship.rs/install.sh | sh
 sudo mv /usr/local/bin/starship /usr/bin/
 starship preset plain-text-symbols -o ~/.config/starship.toml
 
-# Preguntar si quieres instalar auto-cpufreq
-while true; do
-	echo -e "\n¿Quieres instalar auto-cpufreq?\n[Ayuda a prolongar la batería en los portátiles]\n"
-	read -p "(s/n): " answer
-	case $answer in
-		[Ss]) bash ./res/auto-cpufreq.sh && break ;;
-        [Nn]) echo "No se instalará auto-cpufreq." && break ;;
-        *) echo "Por favor, introduce s o n." ;;
-    esac
-done
+# Función para paquetes opcionales
+ask() {
+	local prompt=$1 script=$2
+    while true; do
+		read -rp "¿Quieres instalar $prompt? (s/n): " a
+        case $a in
+			[Ss]) bash "$script"; return ;;
+            [Nn]) echo "No se instalará $prompt."; return ;;
+            *) echo "Introduce s o n." ;;
+        esac
+    done
+}
 
-# Preguntar si quieres instalar Typst
-while true; do
-	echo -e "\n¿Quieres instalar Typst?\n[Alternativa moderna a LaTeX]\n"
-	read -p "(s/n): " answer
-	case $answer in
-		[Ss]) bash ./res/typst.sh && break ;;
-        [Nn]) echo "No se instalará Typst." && break ;;
-        *) echo "Por favor, introduce s o n." ;;
-    esac
-done
+# Paquetes opcionales
+ask auto-cpufreq ./res/auto-cpufreq.sh
+ask Typst ./res/typst.sh
 
 #===== CONFIGURACIÓN =====#
 
