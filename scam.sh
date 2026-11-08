@@ -39,8 +39,8 @@ bash ./res/std/ly.sh
 bash ./res/std/newsraft.sh
 
 # Configuración de GTK3
-spawn-sh-at-startup "gsettings set org.gnome.desktop.interface gtk-theme Arc-Dark"
-spawn-sh-at-startup "gsettings set org.gnome.desktop.interface icon-theme Papirus-Dark"
+gsettings set org.gnome.desktop.interface gtk-theme Arc-Dark
+gsettings set org.gnome.desktop.interface icon-theme Papirus-Dark
 
 # Aplicaciones GTk4 oscuras
 dconf write /org/gnome/desktop/interface/color-scheme '"prefer-dark"'
