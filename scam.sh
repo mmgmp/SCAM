@@ -1,16 +1,17 @@
 #!/bin/bash
 
-sudo apt update
+# Actualizar sistema
+sudo apt update && sudo apt upgrade
+
+# Paquetes de los repositorios oficiales
+source ./res/pkgs.conf
+sudo apt install "${ENVIROMENT[@]}" "${SOUND[@]}" "${MULTIMEDIA[@]}" "${THEME[@]}" "${EXTRA[@]}" || exit 1
 
 # Descargar e instalar Niri
 bash ./res/niri.sh && bash ./res/xwayland-satellite.sh || exit 1
 
-# Paquetes de los repositorios oficiales
-source ./res/pkgs.conf
-sudo apt install "${ENVIROMENT[@]}" "${SOUND[@]}" "${MULTIMEDIA[@]}" "${THEME[@]}" "${EXTRA[@]}"
-
 # Instalar quickshell
-bash ./res/std/quickshell.sh
+bash ./res/std/quickshell.sh || exit 1
 
 # Navegador web
 curl -fsS https://dl.brave.com/install.sh | sh
