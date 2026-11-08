@@ -9,34 +9,26 @@ sudo apt update && sudo apt upgrade -y
 source ./res/pkgs.conf
 sudo apt install -y "${ENVIROMENT[@]}" "${SOUND[@]}" "${MULTIMEDIA[@]}" "${THEME[@]}" "${EXTRA[@]}" || exit 1
 
-# Descargar e instalar Niri
+# Niri (WM)
 bash ./res/niri.sh && bash ./res/xwayland-satellite.sh || exit 1
 
-# Instalar quickshell
+# Quickshell
 bash ./res/quickshell.sh || exit 1
 
-# Navegador web
+# Brave
 curl -fsS https://dl.brave.com/install.sh | sh
 
 # Flatpak
 sudo apt install -y flatpak
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
-# Crear carpetas para fuentes
-[ -d ~/.local/share/fonts ] || mkdir -p ~/.local/share/fonts
+# FiraMono Nerd Font
+bash ./res/FiraMonoNerd.sh
 
-# Descargar FiraMono Nerd Font
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/FiraMono.zip
-7z x FiraMono.zip -oFiraMono
-cp FiraMono/Fira*.otf ~/.local/share/fonts
-
-# Actualizar cache de fuentes
-fc-cache -f
-
-# Instalar Ly (display manager)
+# Ly (display manager)
 bash ./res/ly.sh
 
-# Instalar Newsraft (rss)
+# Newsraft (rss)
 bash ./res/newsraft.sh
 
 # Descargar yt-dlp de github
@@ -44,7 +36,7 @@ wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp
 chmod +x yt-dlp
 sudo mv -f yt-dlp /usr/bin/yt-dlp
 
-# Instalar Starship prompt
+# Starship prompt
 curl -sS https://starship.rs/install.sh | sh
 sudo mv /usr/local/bin/starship /usr/bin/
 mkdir -p ~/.config && starship preset plain-text-symbols -o ~/.config/starship.toml
