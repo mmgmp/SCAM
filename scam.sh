@@ -1,15 +1,13 @@
 #!/bin/bash
 
-# Instalar nala (más estético)
 sudo apt update
-sudo apt install -y nala
 
 # Descargar e instalar Niri
 bash ./res/niri.sh && bash ./res/xwayland-satellite.sh || exit 1
 
 # Paquetes de los repositorios oficiales
 source ./res/pkgs.conf
-sudo nala install "${ENVIROMENT[@]}" "${SOUND[@]}" "${MULTIMEDIA[@]}" "${THEME[@]}" "${EXTRA[@]}"
+sudo apt install "${ENVIROMENT[@]}" "${SOUND[@]}" "${MULTIMEDIA[@]}" "${THEME[@]}" "${EXTRA[@]}"
 
 # Instalar quickshell
 bash ./res/std/quickshell.sh
