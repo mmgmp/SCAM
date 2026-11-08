@@ -94,4 +94,8 @@ mkdir -p ~/.local/state/bash && mv ~/.bash_history ~/.local/state/bash/history
 # Configuracion de git en XDG
 mkdir -p ~/.config/git && mv ~/.gitconfig ~/.config/git/config 
 
+# Activar los servicios systemd
+systemctl --user daemon-reload
+systemctl --user add-wants niri.service swaybg.service quickshell.service
+
 echo -e "\nCompletado, puedes reiniciar el ordenador con el comando 'systemctl reboot'\n"
