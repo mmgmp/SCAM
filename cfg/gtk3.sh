@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Configuración
-GTK_FONT="Inter 10"
+GTK_FONT="Inter 11"
 GTK_THEME="Arc-Dark"
 GTK_ICONS="Papirus-Dark"
 
