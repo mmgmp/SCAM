@@ -13,7 +13,7 @@ sudo apt install "${ENVIROMENT[@]}" "${SOUND[@]}" "${MULTIMEDIA[@]}" "${THEME[@]
 bash ./res/niri.sh && bash ./res/xwayland-satellite.sh || exit 1
 
 # Instalar quickshell
-bash ./res/std/quickshell.sh || exit 1
+bash ./res/quickshell.sh || exit 1
 
 # Navegador web
 curl -fsS https://dl.brave.com/install.sh | sh
@@ -34,10 +34,10 @@ cp FiraMono/Fira*.otf ~/.local/share/fonts
 fc-cache -f
 
 # Instalar Ly (display manager)
-bash ./res/std/ly.sh
+bash ./res/ly.sh
 
 # Instalar Newsraft (rss)
-bash ./res/std/newsraft.sh
+bash ./res/newsraft.sh
 
 # Descargar yt-dlp de github
 wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp
@@ -60,7 +60,7 @@ while true; do
 	echo -e "\n¿Quieres instalar Typst?\n[Alternativa moderna a LaTeX]\n"
 	read -p "(s/n): " answer
 	case $answer in
-		[Ss]) bash ./res/std/typst.sh && break ;;
+		[Ss]) bash ./res/typst.sh && break ;;
         [Nn]) echo "No se instalará Typst." && break ;;
         *) echo "Por favor, introduce s o n." ;;
     esac
